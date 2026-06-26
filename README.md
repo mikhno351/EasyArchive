@@ -9,7 +9,31 @@ EasyArchive is a lightweight and intuitive Java library (a wrapper over [**7-Zip
 * **Flexible settings:** Control of the compression level and the number of streams used (for supported formats).
 
 ## Usage
-### 1. Creating an archive
+### 1. Add in your project
+Use gradle:
+```gradle
+implementation("io.github.mikhno351:easy-archive:{version}")
+```
+Use maven:
+```xml
+<dependency>
+    <groupId>io.github.mikhno351</groupId>
+    <artifactId>easy-archive</artifactId>
+    <version>{version}</version>
+</dependency>
+```
+Use local method (download actual version from Releases):
+```xml
+<dependency>
+    <groupId>io.github.mikhno351</groupId>
+    <artifactId>easy-archive</artifactId>
+    <version>{version}</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/easy-archive-{version}.jar</systemPath>
+</dependency>
+```
+
+### 2. Creating an archive
 You can quickly pack an entire directory or transfer a custom list of files.
 
 ```java
@@ -48,7 +72,7 @@ Creating an archive from a list (with your filtering):
 archive.create(EasyArchive.SourcePreparer.prepare(sourceDirectory), outputFile);
 ```
 
-### 2. Reading and extracting the archive (Complete)
+### 3. Reading and extracting the archive (Complete)
 
 ```java
 import io.github.mikhno351.EasyArchive;
