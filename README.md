@@ -4,7 +4,7 @@ EasyArchive is a lightweight and intuitive Java library (a wrapper over [**7-Zip
 ## Features
 * **Versatility:** Supports ZIP, 7z, TAR, RAR, GZIP and other formats.
 * **Streaming processing (Stream API):** Easy navigation and filtering of archive contents using standard Java Streams.
-* **Smart memory management:** Small files (up to 10 MB) are extracted directly into RAM, and large files are automatically dumped into temporary files, preventing `OutOfMemoryError'.
+* **Smart memory management:** Small files (up to 10 MB) are extracted directly into RAM, and large files are automatically dumped into temporary files, preventing `OutOfMemoryError`.
 * **Password support:** Create and read encrypted archives "out of the box".
 * **Flexible settings:** Control of the compression level and the number of streams used (for supported formats).
 
