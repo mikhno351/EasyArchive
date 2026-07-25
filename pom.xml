@@ -6,7 +6,7 @@
 
     <groupId>io.github.mikhno351</groupId>
     <artifactId>easy-archive</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>EasyArchive</name>
     <description>A lightweight Java wrapper for 7-Zip JBinding with Stream API support</description>
@@ -50,14 +50,12 @@
             <groupId>net.sf.sevenzipjbinding</groupId>
             <artifactId>sevenzipjbinding-all-platforms</artifactId>
             <version>16.02-2.01</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.46</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
