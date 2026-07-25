@@ -13,11 +13,6 @@ import java.nio.file.Files;
  */
 public final class InputStreamProviderFactory {
 
-    /**
-     * The maximum file size (10 MB) allowed to be extracted entirely into memory.
-     */
-    private static final long MEMORY_THRESHOLD = 10485760;
-
     private InputStreamProviderFactory() {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
@@ -36,8 +31,7 @@ public final class InputStreamProviderFactory {
             return null;
         }
 
-        long fileSize = simpleInArchiveItem.getSize();
-        return () -> fileSize <= MEMORY_THRESHOLD ? readToMemory(simpleInArchiveItem, fileSize, forcedPassword) : readToTempFile(simpleInArchiveItem, forcedPassword);
+        return () -> readToTempFile(simpleInArchiveItem, forcedPassword);
     }
 
     /**
@@ -64,7 +58,7 @@ public final class InputStreamProviderFactory {
      * Extracts the archive item to a temporary file that deletes itself upon stream closure.
      */
     private static InputStream readToTempFile(ISimpleInArchiveItem item, String forcedPassword) throws IOException {
-        File tempFile = File.createTempFile("easyarchive_", ".tmp");
+        File tempFile = File.createTempFile("easyarchive_", "_" + System.currentTimeMillis() + ".tmp");
         try (FileOutputStream fileOutputStream = new FileOutputStream(tempFile)) {
             item.extractSlow(data -> {
                 try {
