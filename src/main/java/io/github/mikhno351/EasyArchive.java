@@ -18,7 +18,6 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -102,7 +101,7 @@ public final class EasyArchive {
      * @throws IOException if an I/O error occurs during compression.
      */
     public void create(File sourceDirectory, File outputFile) throws IOException {
-        create(SourcePreparer.prepare(sourceDirectory), outputFile);
+        create(Source.prepare(sourceDirectory).toList(), outputFile);
     }
 
     /**
@@ -255,9 +254,9 @@ public final class EasyArchive {
     /**
      * Utility class used to scan folders and convert files into a list of packable {@link SourceEntry} items.
      */
-    public static final class SourcePreparer {
+    public static final class Source {
 
-        private SourcePreparer() {
+        private Source() {
             throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
         }
 
@@ -268,7 +267,7 @@ public final class EasyArchive {
          * @return a list of prepared {@link SourceEntry} objects.
          * @throws IOException if an error occurs while walking the file tree.
          */
-        public static List<SourceEntry> prepare(File sourceDirectory) throws IOException {
+        public static Stream<SourceEntry> prepare(File sourceDirectory) throws IOException {
             if (sourceDirectory == null) {
                 throw new IllegalArgumentException("Directory must not be NULL");
             }
@@ -282,7 +281,7 @@ public final class EasyArchive {
             Path rootPath = sourceDirectory.toPath();
 
             try (Stream<Path> stream = Files.walk(rootPath)) {
-                return stream.filter(path -> !path.equals(rootPath)).map(path -> new SourceEntry(rootPath.relativize(path).toString().replace('\\', '/'), path.toFile())).collect(Collectors.toList());
+                return stream.filter(path -> !path.equals(rootPath)).map(path -> new SourceEntry(rootPath.relativize(path).toString().replace('\\', '/'), path.toFile()));
             }
         }
     }

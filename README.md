@@ -69,7 +69,7 @@ archive.create(List.of(
 ```
 Creating an archive from a list (with your filtering):
 ```java
-archive.create(EasyArchive.SourcePreparer.prepare(sourceDirectory), outputFile);
+archive.create(EasyArchive.Source.prepare(sourceDirectory), outputFile);
 ```
 
 ### 3. Reading and extracting the archive (Complete)
