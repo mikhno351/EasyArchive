@@ -4,7 +4,6 @@ EasyArchive is a lightweight and intuitive Java library (a wrapper over [**7-Zip
 ## Features
 * **Versatility:** Supports ZIP, 7z, TAR, RAR, GZIP and other formats.
 * **Streaming processing (Stream API):** Easy navigation and filtering of archive contents using standard Java Streams.
-* **Smart memory management:** Small files (up to 10 MB) are extracted directly into RAM, and large files are automatically dumped into temporary files, preventing `OutOfMemoryError`.
 * **Password support:** Create and read encrypted archives "out of the box".
 * **Flexible settings:** Control of the compression level and the number of streams used (for supported formats).
 
@@ -143,6 +142,3 @@ When configuring the builder via `.forcedCompressionLevel(...)` use constants fr
 * `CompressionLevel.NORMAL` (5) — Base value
 * `CompressionLevel.MAXIMUM` (7)
 * `CompressionLevel.ULTRA` (9) — Maximum compression (requires more time and RAM)
-
-## Resource and RAM security
-* Native resources: The `ArchiveContext` context extends `AutoCloseable` and manages `RandomAccessFile` descriptors and `IInArchive` references. Always wrap the `.open()` call in `try-with-resources`.
