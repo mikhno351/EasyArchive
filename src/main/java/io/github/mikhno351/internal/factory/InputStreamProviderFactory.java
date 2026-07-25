@@ -13,6 +13,11 @@ import java.nio.file.Files;
  */
 public final class InputStreamProviderFactory {
 
+    /**
+     * The maximum file size (10 MB) allowed to be extracted entirely into memory.
+     */
+    private static final long MEMORY_THRESHOLD = 10485760;
+
     private InputStreamProviderFactory() {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
